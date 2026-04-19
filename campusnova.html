@@ -1,0 +1,804 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusNova Educational Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --green:#1a7a5e;--green-dark:#0e5240;--green-light:#e6f5f0;--green-mid:#2da07c;
+  --gold:#c8a84b;--gold-light:#f5edd0;
+  --white:#ffffff;--off-white:#f8faf9;
+  --text-dark:#1a2b26;--text-mid:#3d5a52;--text-light:#7a9990;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);color:var(--text-dark);background:var(--white);overflow-x:hidden;line-height:1.7;}
+
+/* ── INTRO OVERLAY ── */
+#intro{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--green-dark);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity 0.7s ease, visibility 0.7s ease;
+}
+#intro.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.intro-logo-wrap{display:flex;flex-direction:column;align-items:center;gap:20px;}
+.intro-logo-svg{animation:logoPop 0.8s cubic-bezier(0.16,1,0.3,1) both;}
+@keyframes logoPop{from{opacity:0;transform:scale(0.6) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.intro-brand{
+  text-align:center;
+  animation:fadeUp 0.7s 0.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.intro-name{font-family:var(--font-display);font-size:38px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1;}
+.intro-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:6px;}
+.intro-tagline{
+  font-size:15px;color:rgba(255,255,255,0.6);margin-top:28px;
+  animation:fadeUp 0.7s 0.7s cubic-bezier(0.16,1,0.3,1) both;
+}
+.intro-bar{
+  width:0;height:2px;background:var(--gold);border-radius:2px;margin-top:32px;
+  animation:barGrow 1s 1s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes barGrow{from{width:0;}to{width:200px;}}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,122,94,0.12);
+  padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:68px;
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-brand{display:flex;flex-direction:column;line-height:1.1;}
+.nav-brand strong{font-family:var(--font-display);font-size:17px;color:var(--green-dark);letter-spacing:-0.3px;}
+.nav-brand span{font-size:10px;color:var(--text-light);letter-spacing:1.5px;text-transform:uppercase;font-weight:500;}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+.nav-links a{text-decoration:none;font-size:14px;font-weight:500;color:var(--text-mid);transition:color 0.2s;}
+.nav-links a:hover{color:var(--green);}
+.nav-cta{background:var(--green)!important;color:var(--white)!important;padding:9px 22px!important;border-radius:6px!important;font-weight:600!important;transition:background 0.2s!important;}
+.nav-cta:hover{background:var(--green-dark)!important;}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:120px 5% 80px;position:relative;background:var(--off-white);overflow:hidden;
+}
+.hero-bg-shape{position:absolute;top:-80px;right:-80px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,94,0.07) 0%,transparent 70%);pointer-events:none;}
+.hero-content{max-width:720px;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-light);border:1px solid rgba(26,122,94,0.25);color:var(--green-dark);font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:24px;}
+.hero-badge::before{content:'';display:block;width:6px;height:6px;background:var(--green-mid);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+.hero h1{font-family:var(--font-display);font-size:clamp(42px,6vw,72px);line-height:1.08;font-weight:900;color:var(--text-dark);letter-spacing:-1.5px;margin-bottom:24px;}
+.hero h1 em{font-style:normal;color:var(--green);position:relative;}
+.hero h1 em::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:3px;background:var(--gold);border-radius:2px;transform-origin:left;animation:underlineGrow 1s 0.4s cubic-bezier(0.16,1,0.3,1) both;}
+@keyframes underlineGrow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+.hero p{font-size:18px;color:var(--text-mid);max-width:560px;margin-bottom:40px;font-weight:300;line-height:1.75;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-primary{display:inline-block;background:var(--green);color:var(--white);text-decoration:none;font-size:15px;font-weight:600;padding:14px 30px;border-radius:8px;transition:all 0.2s;border:none;cursor:pointer;}
+.btn-primary:hover{background:var(--green-dark);transform:translateY(-1px);}
+.btn-secondary{display:inline-block;background:transparent;color:var(--green);text-decoration:none;font-size:15px;font-weight:600;padding:14px 30px;border-radius:8px;border:2px solid var(--green);transition:all 0.2s;}
+.btn-secondary:hover{background:var(--green-light);}
+.hero-stats{display:flex;gap:48px;margin-top:64px;padding-top:48px;border-top:1px solid rgba(26,122,94,0.15);flex-wrap:wrap;}
+.stat-item .num{font-family:var(--font-display);font-size:38px;font-weight:700;color:var(--green);line-height:1;}
+.stat-item .label{font-size:13px;color:var(--text-light);font-weight:500;margin-top:4px;letter-spacing:0.3px;}
+
+/* ── SECTION BASE ── */
+section{padding:100px 5%;}
+.section-label{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:14px;}
+.section-title{font-family:var(--font-display);font-size:clamp(32px,4vw,48px);font-weight:700;line-height:1.15;letter-spacing:-0.8px;color:var(--text-dark);margin-bottom:18px;}
+.section-sub{font-size:17px;color:var(--text-mid);font-weight:300;max-width:560px;line-height:1.7;margin-bottom:56px;}
+
+/* ── ABOUT ── */
+#about{background:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-card{background:var(--green-dark);border-radius:20px;padding:48px 40px;color:var(--white);position:relative;overflow:hidden;}
+.about-card::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.04);}
+.about-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:140px;height:140px;border-radius:50%;background:rgba(200,168,75,0.12);}
+.about-name{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.about-title-role{font-size:13px;color:rgba(255,255,255,0.6);letter-spacing:1.5px;text-transform:uppercase;font-weight:500;margin-bottom:28px;}
+.about-divider{width:48px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:28px;}
+.about-card p{font-size:15px;color:rgba(255,255,255,0.78);line-height:1.8;margin-bottom:32px;}
+.about-contact{display:flex;flex-direction:column;gap:10px;}
+.contact-item{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.9);}
+.contact-icon{width:32px;height:32px;background:rgba(255,255,255,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.why-list{display:flex;flex-direction:column;gap:20px;margin-top:32px;}
+.why-item{display:flex;gap:16px;align-items:flex-start;}
+.why-dot{width:10px;height:10px;border-radius:50%;background:var(--green-mid);margin-top:7px;flex-shrink:0;}
+.why-item strong{font-size:15px;font-weight:600;color:var(--text-dark);display:block;margin-bottom:2px;}
+.why-item p{font-size:14px;color:var(--text-mid);line-height:1.65;}
+
+/* ── SERVICES ── */
+#services{background:var(--off-white);}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.service-card{background:var(--white);border-radius:16px;padding:36px 30px;border:1px solid rgba(26,122,94,0.1);transition:all 0.25s;position:relative;overflow:hidden;}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(26,122,94,0.1);border-color:rgba(26,122,94,0.25);}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green),var(--green-mid));border-radius:16px 16px 0 0;opacity:0;transition:opacity 0.25s;}
+.service-card:hover::before{opacity:1;}
+.service-icon{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;}
+.icon-eng{background:#e6f5f0;}.icon-med{background:#fde8e8;}.icon-guide{background:#e8f0fd;}.icon-doc{background:#fdf5e8;}.icon-cet{background:#f0e8fd;}.icon-comp{background:#e8fdf5;}
+.service-card h3{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--text-dark);margin-bottom:10px;line-height:1.2;}
+.service-card p{font-size:14px;color:var(--text-mid);line-height:1.7;}
+
+/* ── PROCESS ── */
+#process{background:var(--white);}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:20px;}
+.process-steps::before{content:'';position:absolute;top:36px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--green-light),var(--green-mid),var(--green-light));z-index:0;}
+.step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 16px;position:relative;z-index:1;}
+.step-num{width:72px;height:72px;border-radius:50%;background:var(--white);border:3px solid var(--green);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--green);margin-bottom:20px;transition:all 0.25s;}
+.step:hover .step-num{background:var(--green);color:var(--white);transform:scale(1.08);}
+.step h3{font-size:16px;font-weight:600;color:var(--text-dark);margin-bottom:8px;line-height:1.3;}
+.step p{font-size:13px;color:var(--text-light);line-height:1.6;}
+
+/* ── STREAMS ── */
+#streams{background:var(--green-dark);color:var(--white);}
+#streams .section-label{color:var(--gold);}
+#streams .section-title{color:var(--white);}
+#streams .section-sub{color:rgba(255,255,255,0.65);}
+.streams-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.stream-card{border-radius:16px;padding:36px 32px;border:1px solid rgba(255,255,255,0.1);transition:all 0.25s;}
+.stream-card:hover{border-color:rgba(255,255,255,0.25);transform:translateY(-2px);}
+.stream-eng{background:rgba(255,255,255,0.05);}.stream-med{background:rgba(255,255,255,0.03);}
+.stream-badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:20px;}
+.badge-eng{background:rgba(45,160,124,0.25);color:#6de0b8;}.badge-med{background:rgba(220,80,80,0.2);color:#f5a0a0;}
+.stream-card h3{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--white);margin-bottom:16px;}
+.stream-card p{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:24px;}
+.stream-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{font-size:12px;font-weight:500;padding:5px 12px;border-radius:100px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.75);letter-spacing:0.3px;}
+
+/* ── COLLEGE COMPARISON ── */
+#comparison{background:var(--off-white);}
+.compare-wrap{overflow-x:auto;border-radius:16px;border:1px solid rgba(26,122,94,0.15);background:var(--white);}
+.compare-table{width:100%;border-collapse:collapse;font-size:14px;}
+.compare-table thead tr{background:var(--green-dark);}
+.compare-table thead th{padding:16px 20px;text-align:left;color:rgba(255,255,255,0.9);font-weight:600;font-size:13px;letter-spacing:0.4px;}
+.compare-table thead th:first-child{border-radius:14px 0 0 0;}
+.compare-table thead th:last-child{border-radius:0 14px 0 0;}
+.compare-table tbody tr{border-bottom:1px solid rgba(26,122,94,0.08);transition:background 0.15s;}
+.compare-table tbody tr:last-child{border-bottom:none;}
+.compare-table tbody tr:hover{background:var(--green-light);}
+.compare-table tbody td{padding:14px 20px;color:var(--text-dark);vertical-align:middle;}
+.compare-table tbody td:first-child{font-weight:600;color:var(--text-mid);font-size:13px;white-space:nowrap;}
+.col-eng{color:var(--green-dark)!important;}.col-med{color:#b03030!important;}
+.check{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--green-light);color:var(--green-dark);font-size:12px;}
+.cross{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#fde8e8;color:#b03030;font-size:12px;}
+.row-head{background:rgba(26,122,94,0.04);}
+.row-head td{font-family:var(--font-display);font-size:16px!important;font-weight:700!important;color:var(--text-dark)!important;padding-top:20px!important;}
+
+/* ── FAQ ── */
+#faq{background:var(--white);}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 64px;align-items:start;}
+.faq-list{display:flex;flex-direction:column;gap:0;}
+.faq-item{border-bottom:1px solid rgba(26,122,94,0.1);}
+.faq-q{
+  width:100%;background:none;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 0;text-align:left;
+  font-family:var(--font-body);font-size:15px;font-weight:600;color:var(--text-dark);
+  gap:16px;
+}
+.faq-q:hover{color:var(--green);}
+.faq-icon{width:24px;height:24px;border-radius:50%;border:2px solid var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.25s;color:var(--green);font-size:14px;}
+.faq-item.open .faq-icon{background:var(--green);color:var(--white);transform:rotate(45deg);}
+.faq-a{display:none;padding:0 0 20px;font-size:14px;color:var(--text-mid);line-height:1.75;}
+.faq-item.open .faq-a{display:block;}
+
+/* ── VISITING CARD SECTION ── */
+#card-section{background:var(--off-white);}
+.card-wrapper{display:flex;flex-direction:column;align-items:center;gap:16px;}
+.card-scene{perspective:1200px;}
+.visiting-card{
+  width:440px;height:252px;
+  position:relative;transform-style:preserve-3d;
+  transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);
+  cursor:pointer;
+}
+.visiting-card:hover,.card-scene:hover .visiting-card{transform:rotateY(180deg);}
+.card-face{
+  position:absolute;inset:0;border-radius:18px;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  overflow:hidden;
+}
+
+/* FRONT */
+.card-front{background:var(--green-dark);}
+.card-front-inner{
+  position:relative;width:100%;height:100%;padding:22px 28px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+/* decorative arcs on front */
+.card-arc1{position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.07);}
+.card-arc2{position:absolute;top:-30px;right:-30px;width:150px;height:150px;border-radius:50%;border:1.5px solid rgba(200,168,75,0.15);}
+.card-arc3{position:absolute;bottom:-50px;left:-50px;width:180px;height:180px;border-radius:50%;border:1px solid rgba(255,255,255,0.05);}
+
+.card-top-row{display:flex;align-items:center;gap:14px;position:relative;z-index:1;}
+.card-logo-emblem{flex-shrink:0;}
+.card-company-name{font-family:var(--font-display);font-size:14px;font-weight:700;color:#fff;letter-spacing:-0.2px;}
+.card-company-sub{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:1px;}
+
+.card-mid{position:relative;z-index:1;line-height:1.2;}
+.card-person-name{font-family:var(--font-display);font-size:21px;font-weight:900;color:#fff;letter-spacing:-0.3px;line-height:1.1;margin-bottom:5px;}
+.card-gold-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(200,168,75,0.18);border:1px solid rgba(200,168,75,0.4);
+  color:var(--gold);font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;
+  padding:4px 12px;border-radius:100px;
+}
+.card-gold-pill::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;}
+
+.card-bottom-row{display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:1;}
+.card-phone-row{display:flex;align-items:center;gap:8px;}
+.card-phone-icon{width:26px;height:26px;border-radius:6px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;}
+.card-phone-num{font-size:13px;font-weight:600;color:rgba(255,255,255,0.9);letter-spacing:0.5px;}
+.card-location{text-align:right;}
+.card-loc-city{font-size:12px;font-weight:600;color:rgba(255,255,255,0.7);}
+.card-loc-state{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.5px;}
+
+/* gold bar accent at bottom */
+.card-gold-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),rgba(200,168,75,0.2),transparent);}
+
+/* BACK */
+.card-back{background:var(--white);transform:rotateY(180deg);border:1.5px solid rgba(26,122,94,0.15);}
+.card-back-inner{
+  width:100%;height:100%;padding:28px 32px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+  position:relative;
+}
+.card-back-top-bar{position:absolute;top:0;left:0;right:0;height:4px;background:var(--green-dark);border-radius:18px 18px 0 0;}
+.card-back-logo-wrap{margin-bottom:10px;}
+.card-back-name{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--green-dark);text-align:center;margin-bottom:2px;}
+.card-back-tagline-text{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);text-align:center;margin-bottom:14px;}
+.card-back-gold-line{width:36px;height:2px;background:var(--gold);border-radius:1px;margin-bottom:14px;}
+.card-back-services-text{font-size:11.5px;color:var(--text-mid);text-align:center;line-height:1.9;}
+.card-back-services-text span{color:var(--green-mid);font-weight:600;}
+.card-back-bottom{position:absolute;bottom:16px;font-size:10px;color:var(--text-light);letter-spacing:0.5px;}
+
+/* ── CONTACT ── */
+#contact{background:var(--white);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.contact-cards{display:flex;flex-direction:column;gap:16px;margin-top:32px;}
+.contact-card{background:var(--green-light);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:16px;}
+.contact-card-icon{width:44px;height:44px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.contact-card strong{font-size:13px;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:0.8px;display:block;margin-bottom:3px;}
+.contact-card span{font-size:16px;color:var(--text-dark);font-weight:500;}
+.contact-form h3{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--text-dark);margin-bottom:24px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.form-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.form-field label{font-size:13px;font-weight:600;color:var(--text-mid);letter-spacing:0.3px;}
+.form-field input,.form-field select,.form-field textarea{padding:12px 14px;border:1px solid rgba(26,122,94,0.2);border-radius:8px;font-size:14px;font-family:var(--font-body);color:var(--text-dark);background:var(--off-white);outline:none;transition:border-color 0.2s,background 0.2s;}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--green);background:var(--white);}
+.form-field textarea{resize:vertical;min-height:100px;}
+.form-submit{width:100%;padding:14px;background:var(--green);color:var(--white);font-size:15px;font-weight:600;border:none;border-radius:8px;cursor:pointer;font-family:var(--font-body);transition:background 0.2s;}
+.form-submit:hover{background:var(--green-dark);}
+
+/* ── FOOTER ── */
+footer{background:var(--text-dark);padding:48px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.footer-text{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6;}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{
+  position:fixed;bottom:28px;right:28px;z-index:500;
+  width:56px;height:56px;border-radius:50%;
+  background:#25d366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,0.4);
+  cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;
+  text-decoration:none;
+}
+.wa-float:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(37,211,102,0.5);}
+.wa-tooltip{
+  position:absolute;right:66px;top:50%;transform:translateY(-50%);
+  background:var(--text-dark);color:#fff;
+  font-size:12px;font-weight:600;white-space:nowrap;
+  padding:6px 12px;border-radius:6px;opacity:0;pointer-events:none;
+  transition:opacity 0.2s;
+}
+.wa-float:hover .wa-tooltip{opacity:1;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  #about{grid-template-columns:1fr;gap:48px;}
+  .services-grid{grid-template-columns:1fr 1fr;}
+  .process-steps{grid-template-columns:1fr 1fr;gap:40px;}
+  .process-steps::before{display:none;}
+  .streams-grid{grid-template-columns:1fr;}
+  .faq-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;gap:40px;}
+}
+@media(max-width:600px){
+  .services-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .visiting-card{width:320px;height:184px;}
+  .card-person-name{font-size:18px;}
+  .form-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── ANIMATED INTRO ── -->
+<div id="intro">
+  <div class="intro-logo-wrap">
+    <svg class="intro-logo-svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+      <!-- Outer ring -->
+      <circle cx="60" cy="60" r="56" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+      <!-- Background circle -->
+      <circle cx="60" cy="60" r="48" fill="rgba(255,255,255,0.07)"/>
+      <!-- Open book base -->
+      <rect x="28" y="68" width="64" height="5" rx="2.5" fill="#c8a84b" opacity="0.9"/>
+      <!-- Left page -->
+      <path d="M60 68 Q44 52 32 48 L32 70 Q44 72 60 72Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+      <!-- Right page -->
+      <path d="M60 68 Q76 52 88 48 L88 70 Q76 72 60 72Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+      <!-- Rising star/graduation symbol above book -->
+      <circle cx="60" cy="38" r="10" fill="none" stroke="#c8a84b" stroke-width="1.5"/>
+      <circle cx="60" cy="38" r="4" fill="#c8a84b"/>
+      <!-- Star rays -->
+      <line x1="60" y1="24" x2="60" y2="28" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="60" y1="48" x2="60" y2="52" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="46" y1="38" x2="50" y2="38" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="70" y1="38" x2="74" y2="38" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="50" y1="28" x2="52.8" y2="30.8" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="67.2" y1="45.2" x2="70" y2="48" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="70" y1="28" x2="67.2" y2="30.8" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="52.8" y1="45.2" x2="50" y2="48" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- CN monogram subtle -->
+      <text x="60" y="90" text-anchor="middle" font-family="'Playfair Display',serif" font-size="10" font-weight="700" fill="rgba(255,255,255,0.3)" letter-spacing="3">CAMPUSNOVA</text>
+    </svg>
+
+    <div class="intro-brand">
+      <div class="intro-name">CampusNova</div>
+      <div class="intro-sub">Educational Services</div>
+    </div>
+    <div class="intro-tagline">Guiding futures. One student at a time.</div>
+    <div class="intro-bar"></div>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="40" height="40" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="56" fill="#0e5240"/>
+      <circle cx="60" cy="60" r="48" fill="rgba(255,255,255,0.05)"/>
+      <rect x="28" y="68" width="64" height="5" rx="2.5" fill="#c8a84b"/>
+      <path d="M60 68 Q44 52 32 48 L32 70 Q44 72 60 72Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+      <path d="M60 68 Q76 52 88 48 L88 70 Q76 72 60 72Z" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+      <circle cx="60" cy="38" r="10" fill="none" stroke="#c8a84b" stroke-width="1.5"/>
+      <circle cx="60" cy="38" r="4" fill="#c8a84b"/>
+      <line x1="60" y1="24" x2="60" y2="28" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="60" y1="48" x2="60" y2="52" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="46" y1="38" x2="50" y2="38" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="70" y1="38" x2="74" y2="38" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <div class="nav-brand">
+      <strong>CampusNova</strong>
+      <span>Educational Services</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#comparison">Compare</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact" class="nav-cta">Book Consultation</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Trusted Admission Consultant · Bengaluru</div>
+    <h1>Your Path to the <em>Right College</em> Starts Here</h1>
+    <p>Specialist in Management Quota admissions for Engineering and Medical colleges across Karnataka and India. I help families secure the right private college seat — fast, transparently, and stress-free.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book Free Consultation</a>
+      <a href="#services" class="btn-secondary">Explore Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="num">500+</div><div class="label">Students Placed</div></div>
+      <div class="stat-item"><div class="num">200+</div><div class="label">College Tie-ups</div></div>
+      <div class="stat-item"><div class="num">10+</div><div class="label">Years Experience</div></div>
+      <div class="stat-item"><div class="num">98%</div><div class="label">Success Rate</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="about-visual">
+    <div class="about-card">
+      <div class="about-name">Sanjay Sriraj P N</div>
+      <div class="about-title-role">Admission Consultant</div>
+      <div class="about-divider"></div>
+      <p>With over a decade of experience in private college admissions, I specialise exclusively in Management Quota placements for Engineering and Medical colleges — securing the right seat for the right student, without the uncertainty of government counselling.</p>
+      <div class="about-contact">
+        <div class="contact-item"><div class="contact-icon">📞</div><span>+91 63660 34898</span></div>
+        <div class="contact-item"><div class="contact-icon">📍</div><span>Bengaluru, Karnataka</span></div>
+        <div class="contact-item"><div class="contact-icon">🎓</div><span>CampusNova Educational Services</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-text">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-title">An Advisor You Can Trust at Every Step</h2>
+    <p style="font-size:16px;color:var(--text-mid);line-height:1.75;">Admission into a top Engineering or Medical college is one of the most important decisions in a student's life. I bring deep knowledge of counselling procedures, fee structures, cutoffs, and college reputations to help you make a fully informed choice.</p>
+    <div class="why-list">
+      <div class="why-item"><div class="why-dot"></div><div><strong>Management Quota Expert</strong><p>Deep relationships with top private Engineering and Medical colleges — I know which seats are available, at what price, and how to get them confirmed quickly.</p></div></div>
+      <div class="why-item"><div class="why-dot"></div><div><strong>Personalised, One-on-One Guidance</strong><p>Every student is different. I match you to the right college based on your marks, budget, preferred location, and long-term career goals.</p></div></div>
+      <div class="why-item"><div class="why-dot"></div><div><strong>End-to-End Support</strong><p>From the first conversation to the day your child reports to college — I handle everything so your family can focus on what matters.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="section-label">What I Offer</div>
+  <h2 class="section-title">Comprehensive Admission Services</h2>
+  <p class="section-sub">Every service is designed to eliminate confusion, save time, and get your child into the best possible college for their potential.</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon icon-eng">⚙️</div><h3>Engineering MQ Admissions</h3><p>Management Quota seat securing in top private Engineering colleges for B.E / B.Tech — across Karnataka, Tamil Nadu, Maharashtra, and beyond.</p></div>
+    <div class="service-card"><div class="service-icon icon-med">🩺</div><h3>Medical MQ Admissions</h3><p>Management Quota placements for MBBS and BDS in private and deemed medical colleges. I navigate fees, availability, and timelines on your behalf.</p></div>
+    <div class="service-card"><div class="service-icon icon-guide">🎯</div><h3>College & Seat Identification</h3><p>Based on your marks and budget, I identify the best available MQ seats across verified private colleges — no guesswork, no wasted time.</p></div>
+    <div class="service-card"><div class="service-icon icon-doc">📄</div><h3>Document Support</h3><p>Complete assistance with gathering, verifying, and submitting all required documents for private college admission — stress-free for the whole family.</p></div>
+    <div class="service-card"><div class="service-icon icon-cet">📋</div><h3>Fee Clarity & Negotiation</h3><p>Transparent guidance on management quota fee structures, payment schedules, and what to expect — no surprises, no hidden costs.</p></div>
+    <div class="service-card"><div class="service-icon icon-comp">🏫</div><h3>College Quality Assessment</h3><p>Objective evaluation of private colleges on accreditation, placement history, infrastructure, and faculty — so you choose with full confidence.</p></div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section id="process">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">Simple. Clear. Result-Oriented.</h2>
+  <p class="section-sub">My proven 4-step process takes you from confusion to confirmation — efficiently and confidently.</p>
+  <div class="process-steps">
+    <div class="step"><div class="step-num">1</div><h3>Initial Consultation</h3><p>We discuss your marks, stream preference, target colleges, budget, and location — free, no commitment needed.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>College Shortlisting</h3><p>I match you with the best private colleges that have available MQ seats fitting your profile and financial plan.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>Seat Confirmation</h3><p>I coordinate directly with the college, confirm seat availability, and walk you through the fee and documentation process.</p></div>
+    <div class="step"><div class="step-num">4</div><h3>Admission Done</h3><p>Documents submitted, fees paid, seat secured. Your child reports to college — we handle everything up to that moment.</p></div>
+  </div>
+</section>
+
+<!-- ── STREAMS ── -->
+<section id="streams">
+  <div class="section-label">Specialisations</div>
+  <h2 class="section-title">Engineering & Medical — Both, Done Right</h2>
+  <p class="section-sub">Deep expertise in two of India's most competitive and high-stakes admission domains.</p>
+  <div class="streams-grid">
+    <div class="stream-card stream-eng">
+      <span class="stream-badge badge-eng">Engineering</span>
+      <h3>B.E / B.Tech — Management Quota</h3>
+      <p>I secure Management Quota seats in top-ranked private engineering colleges across Karnataka, Tamil Nadu, and Maharashtra. No government counselling queues — direct, confirmed admission for your child.</p>
+      <div class="stream-tags"><span class="tag">Management Quota</span><span class="tag">NRI Quota</span><span class="tag">Private Colleges</span><span class="tag">Deemed Universities</span><span class="tag">All Branches</span></div>
+    </div>
+    <div class="stream-card stream-med">
+      <span class="stream-badge badge-med">Medical</span>
+      <h3>MBBS / BDS — Management Quota</h3>
+      <p>Exclusive focus on Management Quota placements in private and deemed medical colleges. I have direct access to seat availability and help families navigate fees and documentation confidently.</p>
+      <div class="stream-tags"><span class="tag">Management Quota</span><span class="tag">Private Medical Colleges</span><span class="tag">Deemed Universities</span><span class="tag">MBBS</span><span class="tag">BDS</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COLLEGE COMPARISON ── -->
+<section id="comparison">
+  <div class="section-label">Know Before You Choose</div>
+  <h2 class="section-title">Engineering vs Medical — MQ Comparison</h2>
+  <p class="section-sub">Both streams have Management Quota seats in excellent private colleges. Here's what parents typically want to know before deciding.</p>
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th style="width:30%">Factor</th>
+          <th style="width:35%;color:#6de0b8;">⚙️ Engineering (B.E / B.Tech)</th>
+          <th style="width:35%;color:#f5a0a0;">🩺 Medical (MBBS / BDS)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-head"><td colspan="3">Admission & Eligibility</td></tr>
+        <tr><td>Minimum Eligibility</td><td class="col-eng">45%–50% in PCM (Class 12)</td><td class="col-med">50%–60% in PCB + NEET score</td></tr>
+        <tr><td>MQ Seat Availability</td><td class="col-eng">Wide — most private colleges</td><td class="col-med">Limited — select private colleges</td></tr>
+        <tr><td>Admission Speed (MQ)</td><td class="col-eng">Fast — 1 to 2 weeks</td><td class="col-med">Moderate — 2 to 4 weeks</td></tr>
+
+        <tr class="row-head"><td colspan="3">Course Details</td></tr>
+        <tr><td>Course Duration</td><td class="col-eng">4 Years (B.E / B.Tech)</td><td class="col-med">5.5 Years (MBBS incl. internship)</td></tr>
+        <tr><td>Branch / Specialisation</td><td class="col-eng">Chosen at time of admission</td><td class="col-med">After MBBS via PG entrance</td></tr>
+        <tr><td>Mandatory Internship</td><td class="col-eng"><span class="cross">✕</span> Not required</td><td class="col-med"><span class="check">✓</span> 1 year compulsory</td></tr>
+
+        <tr class="row-head"><td colspan="3">Management Quota Fees</td></tr>
+        <tr><td>MQ Fees — Private Colleges</td><td class="col-eng">₹1.5L – ₹4L per year(without donation)</td><td class="col-med">₹10L – ₹30L per year(without donation)</td></tr>
+        <tr><td>Total MQ Course Cost (approx.)</td><td class="col-eng">₹6L – ₹16L total</td><td class="col-med">₹55L – ₹1.7Cr total</td></tr>
+        <tr><td>NRI Quota Available</td><td class="col-eng"><span class="check">✓</span> Yes</td><td class="col-med"><span class="check">✓</span> Yes</td></tr>
+
+        <tr class="row-head"><td colspan="3">Career & Scope</td></tr>
+        <tr><td>Job Opportunities After Graduation</td><td class="col-eng">High — IT, Core, PSU, Startups</td><td class="col-med">Requires PG / residency first</td></tr>
+        <tr><td>Starting Salary (avg.)</td><td class="col-eng">₹4L – ₹12L per annum(if good cgpa)</td><td class="col-med">₹6L – ₹10L (post residency)</td></tr>
+        <tr><td>Higher Studies (PG)</td><td class="col-eng">M.Tech / MBA / MS Abroad</td><td class="col-med">MD / MS / DNB</td></tr>
+
+        <tr class="row-head"><td colspan="3">My Role (Management Quota)</td></tr>
+        <tr><td>Seat Identification</td><td class="col-eng"><span class="check">✓</span> Direct college access</td><td class="col-med"><span class="check">✓</span> Direct college access</td></tr>
+        <tr><td>Fee Transparency</td><td class="col-eng"><span class="check">✓</span> Full breakdown provided</td><td class="col-med"><span class="check">✓</span> Full breakdown provided</td></tr>
+        <tr><td>Document Assistance</td><td class="col-eng"><span class="check">✓</span> Complete support</td><td class="col-med"><span class="check">✓</span> Complete support</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13px;color:var(--text-light);margin-top:16px;text-align:center;">* Fees are approximate and vary by college and year. I provide exact figures during consultation.</p>
+</section>
+
+<!-- ── VISITING CARD ── -->
+<section id="card-section">
+  <div style="text-align:center;margin-bottom:48px;">
+    <div class="section-label" style="text-align:center;">Professional Identity</div>
+    <h2 class="section-title" style="text-align:center;">Visiting Card</h2>
+    <p style="font-size:15px;color:var(--text-mid);max-width:420px;margin:0 auto;text-align:center;">Hover to flip. Standard 3.5" × 2" print-ready design.</p>
+  </div>
+  <div class="card-wrapper">
+    <div class="card-scene">
+      <div class="visiting-card">
+
+        <!-- FRONT -->
+        <div class="card-face card-front">
+          <div class="card-arc1"></div>
+          <div class="card-arc2"></div>
+          <div class="card-arc3"></div>
+          <div class="card-front-inner">
+            <!-- Top: logo + company -->
+            <div class="card-top-row">
+              <div class="card-logo-emblem">
+                <svg width="38" height="38" viewBox="0 0 120 120" fill="none">
+                  <circle cx="60" cy="60" r="56" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                  <rect x="28" y="68" width="64" height="4" rx="2" fill="#c8a84b"/>
+                  <path d="M60 68 Q44 52 32 48 L32 70 Q44 72 60 72Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+                  <path d="M60 68 Q76 52 88 48 L88 70 Q76 72 60 72Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                  <circle cx="60" cy="38" r="9" fill="none" stroke="#c8a84b" stroke-width="1.5"/>
+                  <circle cx="60" cy="38" r="3.5" fill="#c8a84b"/>
+                  <line x1="60" y1="25" x2="60" y2="29" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="60" y1="47" x2="60" y2="51" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="47" y1="38" x2="51" y2="38" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="69" y1="38" x2="73" y2="38" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="card-top-text">
+                <div class="card-company-name">CampusNova</div>
+                <div class="card-company-sub">Educational Services</div>
+              </div>
+            </div>
+
+            <!-- Mid: name + role pill -->
+            <div class="card-mid">
+              <div class="card-person-name">Campusnova consultant</div>
+              <div style="margin-top:8px;">
+                <span class="card-gold-pill">Admission Consultant</span>
+              </div>
+              <div style="margin-top:10px;font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.5px;text-transform:uppercase;">Management Quota · Private Colleges</div>
+            </div>
+
+            <!-- Bottom: phone + location -->
+            <div class="card-bottom-row">
+              <div class="card-phone-row">
+                <div class="card-phone-icon">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+                </div>
+                <div class="card-phone-num">+91 63660 34898</div>
+              </div>
+              <div class="card-location">
+                <div class="card-loc-city">Bengaluru</div>
+                <div class="card-loc-state">Karnataka, India</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-gold-bar"></div>
+        </div>
+
+        <!-- BACK -->
+        <div class="card-face card-back">
+          <div class="card-back-top-bar"></div>
+          <div class="card-back-inner">
+            <div class="card-back-logo-wrap">
+              <svg width="52" height="52" viewBox="0 0 120 120" fill="none">
+                <circle cx="60" cy="60" r="56" fill="#0e5240"/>
+                <rect x="28" y="68" width="64" height="4" rx="2" fill="#c8a84b"/>
+                <path d="M60 68 Q44 52 32 48 L32 70 Q44 72 60 72Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                <path d="M60 68 Q76 52 88 48 L88 70 Q76 72 60 72Z" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                <circle cx="60" cy="38" r="9" fill="none" stroke="#c8a84b" stroke-width="1.5"/>
+                <circle cx="60" cy="38" r="3.5" fill="#c8a84b"/>
+                <line x1="60" y1="25" x2="60" y2="29" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="60" y1="47" x2="60" y2="51" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="47" y1="38" x2="51" y2="38" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="69" y1="38" x2="73" y2="38" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="card-back-name">CampusNova Educational Services</div>
+            <div class="card-back-tagline-text">Your Future. Our Mission.</div>
+            <div class="card-back-gold-line"></div>
+            <div class="card-back-services-text">
+              <span>Engineering MQ Admissions</span> · <span>Medical MQ Admissions</span><br>
+              Private Colleges · Deemed Universities<br>
+              College Shortlisting · Document Support
+            </div>
+            <div class="card-back-bottom">+91 63660 34898 · Bengaluru</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--text-light);letter-spacing:0.5px;">↕ Hover to flip the card</p>
+  </div>
+</section>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusNova Educational Services</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* (YOUR ENTIRE CSS — UNCHANGED) */
+</style>
+</head>
+
+<body>
+
+<!-- (ALL YOUR EXISTING CONTENT — INTRO, NAV, HERO, ETC — UNCHANGED) -->
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-label">Get in Touch</div>
+  <h2 class="section-title">Book Your Free Consultation</h2>
+  <p class="section-sub">Results are out, and seats fill fast. One conversation can change everything.</p>
+
+  <div class="contact-grid">
+    <div>
+      <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:8px;">
+        Whether your child's marks just came out, or you're planning ahead — I'm here to help.
+      </p>
+    </div>
+
+    <!-- ✅ FIXED FORM -->
+    <form class="contact-form" id="enquiryForm">
+
+      <h3>Send an Enquiry</h3>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Student Name</label>
+          <input type="text" name="studentName" required>
+        </div>
+        <div class="form-field">
+          <label>Parent / Guardian</label>
+          <input type="text" name="parentName" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Phone Number</label>
+          <input type="tel" name="phone" required>
+        </div>
+        <div class="form-field">
+          <label>Stream</label>
+          <select name="stream" required>
+            <option value="">Select</option>
+            <option>Engineering</option>
+            <option>Medical</option>
+            <option>Both</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Budget</label>
+        <input type="text" name="budget">
+      </div>
+
+      <div class="form-field">
+        <label>Message</label>
+        <textarea name="message"></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">Submit Enquiry →</button>
+
+    </form>
+  </div>
+</section>
+
+<!-- (YOUR FOOTER + WHATSAPP BUTTON — UNCHANGED) -->
+
+<script>
+// Intro animation (UNCHANGED)
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.getElementById('intro').classList.add('hidden');
+  }, 2600);
+});
+
+// FAQ toggle (UNCHANGED)
+function toggleFaq(btn) {
+  var item = btn.closest('.faq-item');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+// ✅ NEW WORKING FORM SCRIPT
+document.getElementById("enquiryForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = new FormData(this);
+
+    const msg = `Hi Sanjay, I want admission help:
+
+Student Name: ${data.get("studentName")}
+Parent Name: ${data.get("parentName")}
+Phone: ${data.get("phone")}
+Stream: ${data.get("stream")}
+Budget: ${data.get("budget")}
+Message: ${data.get("message")}`;
+
+    const url = "https://wa.me/916366034898?text=" + encodeURIComponent(msg);
+
+    window.open(url, "_blank");
+
+    this.reset();
+});
+</script>
+
+</body>
+</html>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <svg width="36" height="36" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="56" fill="#1a7a5e"/>
+      <rect x="28" y="68" width="64" height="4" rx="2" fill="#c8a84b"/>
+      <path d="M60 68 Q44 52 32 48 L32 70 Q44 72 60 72Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+      <path d="M60 68 Q76 52 88 48 L88 70 Q76 72 60 72Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+      <circle cx="60" cy="38" r="9" fill="none" stroke="#c8a84b" stroke-width="1.5"/>
+      <circle cx="60" cy="38" r="3.5" fill="#c8a84b"/>
+    </svg>
+    <div>
+      <div style="font-size:15px;font-weight:700;color:white;font-family:'Playfair Display',serif;">CampusNova Educational Services</div>
+      <div class="footer-text">Sanjay Sriraj P N · Admission Consultant · Bengaluru</div>
+    </div>
+  </div>
+  <div style="color:rgba(255,255,255,0.3);font-size:12px;line-height:1.8;text-align:right;">
+    Engineering · Medical · Management Quota · Private Colleges<br>
+    © 2025 CampusNova Educational Services. All rights reserved.
+  </div>
+</footer>
+
+<!-- ── WHATSAPP FLOAT ── -->
+<a class="wa-float" href="https://wa.me/916366034898?text=Hi%20Sanjay%2C%20I%20need%20help%20with%20college%20admissions." target="_blank">
+  <div class="wa-tooltip">Chat on WhatsApp</div>
+  <svg width="28" height="28" viewBox="0 0 32 32" fill="white">
+    <path d="M16 2C8.268 2 2 8.268 2 16c0 2.478.676 4.797 1.854 6.782L2 30l7.393-1.826A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.56 11.56 0 01-5.882-1.604l-.421-.25-4.388 1.085 1.107-4.273-.274-.437A11.56 11.56 0 014.4 16C4.4 9.592 9.592 4.4 16 4.4S27.6 9.592 27.6 16 22.408 27.6 16 27.6zm6.355-8.674c-.348-.174-2.058-1.015-2.378-1.131-.32-.116-.553-.174-.786.174-.232.348-.9 1.131-1.103 1.363-.203.232-.406.26-.754.086-.348-.174-1.47-.542-2.8-1.727-1.034-.923-1.732-2.062-1.936-2.41-.203-.348-.022-.536.153-.709.157-.156.348-.406.522-.609.174-.203.232-.348.348-.58.116-.232.058-.435-.029-.609-.087-.174-.786-1.894-1.077-2.593-.283-.68-.572-.587-.786-.598l-.669-.011c-.232 0-.609.087-.928.435-.32.348-1.22 1.19-1.22 2.903s1.249 3.368 1.423 3.6c.174.232 2.458 3.752 5.957 5.262.833.36 1.483.574 1.989.735.836.266 1.597.229 2.199.139.671-.1 2.058-.841 2.349-1.654.29-.813.29-1.511.203-1.654-.087-.145-.319-.232-.668-.406z"/>
+  </svg>
+</a>
+
+<script>
+// Intro animation
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.getElementById('intro').classList.add('hidden');
+  }, 2600);
+});
+
+// FAQ toggle
+function toggleFaq(btn) {
+  var item = btn.closest('.faq-item');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
