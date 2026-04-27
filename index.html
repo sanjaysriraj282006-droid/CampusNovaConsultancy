@@ -711,69 +711,48 @@ footer{background:var(--text-dark);padding:48px 5%;display:flex;align-items:cent
     <form class="contact-form" id="enquiryForm">
 
       <h3>Send an Enquiry</h3>
-
-     <div class="form-field">
-  <label>Phone Number</label>
-
-  <div class="phone-row">
-    
-    <div class="flag-select" id="flagSelect">
-      <div class="flag-display" onclick="toggleDropdown()">
-        <span id="flagEmoji">🇮🇳</span>
-        <span id="flagCode">+91</span>
-        <span class="arrow">▾</span>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Student Name</label>
+          <input type="text" name="studentName" required>
+        </div>
+        <div class="form-field">
+          <label>Parent / Guardian Name</label>
+          <input type="text" name="parentName" required>
+        </div>
       </div>
 
-      <div class="flag-dropdown" id="flagDropdown">
-        <div class="flag-option" onclick="selectFlag(event,'🇮🇳','+91')">India +91</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇦🇪','+971')">UAE +971</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇸🇦','+966')">Saudi Arabia +966</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇶🇦','+974')">Qatar +974</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇰🇼','+965')">Kuwait +965</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇧🇭','+973')">Bahrain +973</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇴🇲','+968')">Oman +968</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇬🇧','+44')">UK +44</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇺🇸','+1')">USA +1</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇨🇦','+1')">Canada +1</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇦🇺','+61')">Australia +61</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇸🇬','+65')">Singapore +65</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇲🇾','+60')">Malaysia +60</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇩🇪','+49')">Germany +49</div>
-        <div class="flag-option" onclick="selectFlag(event,'🇳🇿','+64')">New Zealand +64</div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Phone Number</label>
+          <input type="tel" name="phone" required>
+        </div>
+       
+        <div class="form-field">
+          <label>Stream</label>
+          <select name="stream" required>
+            <option value="">Select</option>
+            <option>Engineering</option>
+            <option>Medical</option>
+            <option>Both</option>
+          </select>
+        </div>
       </div>
-    </div>
 
-    <input type="tel" placeholder="Phone number" style="flex:1; padding:10px; border:1px solid #ccc; border-radius:6px;">
-  
-  </div>
-</div>
+      <div class="form-field">
+        <label>Budget</label>
+        <input type="text" name="budget">
+      </div>
 
-<script>
-function toggleDropdown() {
-  const dropdown = document.getElementById("flagDropdown");
-  dropdown.style.display =
-    dropdown.style.display === "block" ? "none" : "block";
-}
+      <div class="form-field">
+        <label>Message</label>
+        <textarea name="message"></textarea>
+      </div>
 
-function selectFlag(event, emoji, code) {
-  event.stopPropagation();
+      <button type="submit" class="form-submit">Submit Enquiry →</button>
 
-  document.getElementById("flagEmoji").innerText = emoji;
-  document.getElementById("flagCode").innerText = code;
+    </form>
 
-  document.getElementById("flagDropdown").style.display = "none";
-}
-
-// close when clicking outside
-document.addEventListener("click", function (e) {
-  const dropdown = document.getElementById("flagDropdown");
-  const select = document.getElementById("flagSelect");
-
-  if (!select.contains(e.target)) {
-    dropdown.style.display = "none";
-  }
-});
-</script>
   </div>
 </section>
 
