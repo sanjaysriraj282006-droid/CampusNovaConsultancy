@@ -797,16 +797,16 @@ document.addEventListener("click", function (e) {
 
       <div class="form-field">
         <label>Budget</label>
-       <div class="form-field">
-        <label>Message <span style="color:var(--text-light);font-weight:400;">(optional · max 250 words)</span></label>
-        <textarea id="f-msg" placeholder="Any specific questions, preferences, or concerns..." oninput="countWords(this)"></textarea>
-        <div class="word-count" id="wordCount">0 / 250 words</div>
-      </div>
+      <input type="text" id="f-budget" placeholder="e.g. ₹5L – ₹10L per year for Engineering / ₹15L – ₹25L for Medical">
       </div>
 
       <div class="form-field">
         <label>Message</label>
-         <input type="text" id="f-message" placeholder="please input the messagel">
+        <div class="form-field">
+        <label>Message <span style="color:var(--text-light);font-weight:400;">(optional · max 250 words)</span></label>
+        <textarea id="f-msg" placeholder="Any specific questions, preferences, or concerns..." oninput="countWords(this)"></textarea>
+        <div class="word-count" id="wordCount">0 / 250 words</div>
+      </div>
       </div>
 
       <button type="submit" class="form-submit">Submit Enquiry →</button>
