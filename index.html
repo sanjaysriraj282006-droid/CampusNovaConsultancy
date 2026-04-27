@@ -274,6 +274,57 @@ section{padding:100px 5%;}
 .form-field textarea{resize:vertical;min-height:100px;}
 .form-submit{width:100%;padding:14px;background:var(--green);color:var(--white);font-size:15px;font-weight:600;border:none;border-radius:8px;cursor:pointer;font-family:var(--font-body);transition:background 0.2s;}
 .form-submit:hover{background:var(--green-dark);}
+  <style>
+.phone-row {
+  display: flex;
+  gap: 10px;
+}
+
+.flag-select {
+  position: relative;
+  cursor: pointer;
+  min-width: 110px;
+}
+
+.flag-display {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flag-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 220px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.flag-option {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.flag-option:hover {
+  background: #f2f2f2;
+}
+
+.arrow {
+  margin-left: 5px;
+}
+</style>
 
 /* ── FOOTER ── */
 footer{background:var(--text-dark);padding:48px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
