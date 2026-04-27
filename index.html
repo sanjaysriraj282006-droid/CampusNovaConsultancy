@@ -384,7 +384,6 @@ footer{background:var(--text-dark);padding:48px 5%;display:flex;align-items:cent
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#comparison">Compare</a></li>
-    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact" class="nav-cta">Book Consultation</a></li>
   </ul>
 </nav>
@@ -662,54 +661,68 @@ footer{background:var(--text-dark);padding:48px 5%;display:flex;align-items:cent
 
       <h3>Send an Enquiry</h3>
 
-      <div class="contact-form">
-      <h3>Send an Enquiry</h3>
-      <div class="form-row">
-        <div class="form-field"><label>Student Name</label><input type="text" id="f-student" placeholder="Full name"></div>
-        <div class="form-field"><label>Parent / Guardian</label><input type="text" id="f-parent" placeholder="Parent name"></div>
+     <div class="form-field">
+  <label>Phone Number</label>
+
+  <div class="phone-row">
+    
+    <div class="flag-select" id="flagSelect">
+      <div class="flag-display" onclick="toggleDropdown()">
+        <span id="flagEmoji">🇮🇳</span>
+        <span id="flagCode">+91</span>
+        <span class="arrow">▾</span>
       </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>Phone Number</label>
-          <div class="phone-row">
-            <div class="flag-select" id="flagSelect" onclick="toggleFlagDropdown()">
-              <div class="flag-display">
-                <span id="flagEmoji">🇮🇳</span>
-                <span id="flagCode">+91</span>
-                <span class="arrow">▾</span>
-              </div>
-              <div class="flag-dropdown" id="flagDropdown">
-                <div class="flag-option" onclick="pickFlag(event,'🇮🇳','+91','India')"><span>🇮🇳</span><span>India</span><span class="code">+91</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇦🇪','+971','UAE')"><span>🇦🇪</span><span>UAE</span><span class="code">+971</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇸🇦','+966','Saudi Arabia')"><span>🇸🇦</span><span>Saudi Arabia</span><span class="code">+966</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇶🇦','+974','Qatar')"><span>🇶🇦</span><span>Qatar</span><span class="code">+974</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇰🇼','+965','Kuwait')"><span>🇰🇼</span><span>Kuwait</span><span class="code">+965</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇧🇭','+973','Bahrain')"><span>🇧🇭</span><span>Bahrain</span><span class="code">+973</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇴🇲','+968','Oman')"><span>🇴🇲</span><span>Oman</span><span class="code">+968</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇬🇧','+44','UK')"><span>🇬🇧</span><span>UK</span><span class="code">+44</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇺🇸','+1','USA')"><span>🇺🇸</span><span>USA</span><span class="code">+1</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇨🇦','+1','Canada')"><span>🇨🇦</span><span>Canada</span><span class="code">+1</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇦🇺','+61','Australia')"><span>🇦🇺</span><span>Australia</span><span class="code">+61</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇸🇬','+65','Singapore')"><span>🇸🇬</span><span>Singapore</span><span class="code">+65</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇲🇾','+60','Malaysia')"><span>🇲🇾</span><span>Malaysia</span><span class="code">+60</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇩🇪','+49','Germany')"><span>🇩🇪</span><span>Germany</span><span class="code">+49</span></div>
-                <div class="flag-option" onclick="pickFlag(event,'🇳🇿','+64','New Zealand')"><span>🇳🇿</span><span>New Zealand</span><span class="code">+64</span></div>
-              </div>
-            </div>
-            <input type="tel" id="f-phone" placeholder="Phone number" style="flex:1;">
-          </div>
-        </div>
-        <div class="form-field"><label>Stream of Interest</label><select id="f-stream"><option value="">Select stream...</option><option>Engineering (B.E / B.Tech)</option><option>Medical (MBBS / BDS)</option><option>Both</option><option>Not sure yet</option></select></div>
+
+      <div class="flag-dropdown" id="flagDropdown">
+        <div class="flag-option" onclick="selectFlag(event,'🇮🇳','+91')">India +91</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇦🇪','+971')">UAE +971</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇸🇦','+966')">Saudi Arabia +966</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇶🇦','+974')">Qatar +974</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇰🇼','+965')">Kuwait +965</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇧🇭','+973')">Bahrain +973</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇴🇲','+968')">Oman +968</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇬🇧','+44')">UK +44</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇺🇸','+1')">USA +1</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇨🇦','+1')">Canada +1</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇦🇺','+61')">Australia +61</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇸🇬','+65')">Singapore +65</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇲🇾','+60')">Malaysia +60</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇩🇪','+49')">Germany +49</div>
+        <div class="flag-option" onclick="selectFlag(event,'🇳🇿','+64')">New Zealand +64</div>
       </div>
-      <div class="form-field"><label>Your Email Address</label><input type="email" id="f-email" placeholder="yourname@email.com"></div>
-      <div class="form-field"><label>Approximate Budget for Fees</label><input type="text" id="f-budget" placeholder="e.g. ₹5L – ₹10L per year for Engineering / ₹15L – ₹25L for Medical"></div>
-      <div class="form-field">
-        <label>Message <span style="color:var(--text-light);font-weight:400;">(optional · max 250 words)</span></label>
-        <textarea id="f-msg" placeholder="Any specific questions, preferences, or concerns..." oninput="countWords(this)"></textarea>
-        <div class="word-count" id="wordCount">0 / 250 words</div>
-      </div>
-      <button class="form-submit" onclick="submitEnquiry()">Send Enquiry →</button>
     </div>
+
+    <input type="tel" placeholder="Phone number" style="flex:1; padding:10px; border:1px solid #ccc; border-radius:6px;">
+  
+  </div>
+</div>
+
+<script>
+function toggleDropdown() {
+  const dropdown = document.getElementById("flagDropdown");
+  dropdown.style.display =
+    dropdown.style.display === "block" ? "none" : "block";
+}
+
+function selectFlag(event, emoji, code) {
+  event.stopPropagation();
+
+  document.getElementById("flagEmoji").innerText = emoji;
+  document.getElementById("flagCode").innerText = code;
+
+  document.getElementById("flagDropdown").style.display = "none";
+}
+
+// close when clicking outside
+document.addEventListener("click", function (e) {
+  const dropdown = document.getElementById("flagDropdown");
+  const select = document.getElementById("flagSelect");
+
+  if (!select.contains(e.target)) {
+    dropdown.style.display = "none";
+  }
+});
+</script>
   </div>
 </section>
 
@@ -737,7 +750,7 @@ document.getElementById("enquiryForm").addEventListener("submit", function(e) {
 
     const data = new FormData(this);
 
-    const msg = `Hi Sanjay, I want admission help:
+    const msg = `Hi Sanjay, Im looking out for addmissions, im needing help:
 
 Student Name: ${data.get("studentName")}
 Parent Name: ${data.get("parentName")}
